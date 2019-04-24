@@ -18,3 +18,4 @@ I tried machine learning with ml.go. I didn't build my own library. I just use t
 ## Data analysis
 BigTable and BigQuery are used for data analysis.
 ![image](https://user-images.githubusercontent.com/40250261/56684813-5d174380-6685-11e9-92ec-cc0079937cb8.png)
+I finally give up BigQuery as my posts are in good style and volume of data is small. BigQuery could handle all the work
