@@ -1,34 +1,20 @@
 # Around-a-Geo-index-based-social-network
-The big picture of this project:
+Here is the big picture of this project:
 ![1556129800773](https://user-images.githubusercontent.com/40250261/56683477-7c60a180-6682-11e9-8460-75e318303aa9.jpg)
-I write this project on Google Cloud Platform and edit code on GCE VM instance.
 
-main.go:
-handle post request and search request
+## OAuth
+I add token-based authentication for this project. user.go handles login and signup based on Elastic Search. main.go use JWT to protect post and search endpoints. When we do the requests, we need to add token to verify the identity.
 
-GCE:
-search: use ElasticSearch(GeoIndex). To use ES, we need to create post index in ES. We could also save post data to ES(NoSQL + Query Optimization), saveToES(use it when handle the post)
-we could also read from ES for search, used in handlesearch
+## GKE
+I use GKE to manage a production-grade cluster with high performance. For this part, I pack up the project in Docker and publish it to dockerhub.
 
-GCS(object storage):
-save post image to GCS, used in handlerpost
+## GCS
+This part is an assistance for Elastic Search. I save images to GCS and it's used when handling post in main.go.
 
-BigTable: NoSQL + Cloud, persistent, offline analysis
-saveToBigTable
+## GCE
+This is the nerve center of the peoject. I search with Elastic Search based on GeoIndex(query optimization) and save post to Elastic Search.
+I tried machine learning with ml.go. I didn't build my own library. I just use the face sample for an experience.
+
+## Data analysis
+BigTable and BigQuery are used for data analysis.
 ![image](https://user-images.githubusercontent.com/40250261/56684813-5d174380-6685-11e9-92ec-cc0079937cb8.png)
-
-BigQuery: Cloud version of SQL
-code edited in Google Cloud terminal
-
-Google Cloud ML:
-just use the face sample to experience machine learning on GCP
-ml.go
-
-add token-based authentication
-user.go
-checkuser, adduser, handlelogin, handlesignup
-Use JWT to Protect Post and Search Endpoints, need to verify token after logged in
-
-use docker to pack up the whole project and publish it on dockerhub
-GKE: Google Kubernetes Cluster
-manage a production-grade cluster with high performance
